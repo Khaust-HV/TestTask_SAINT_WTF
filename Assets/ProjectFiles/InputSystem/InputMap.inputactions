@@ -1,0 +1,55 @@
+{
+    "version": 1,
+    "name": "InputMap",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "d2752fe6-75a4-49ad-b0ce-1ca9b5604d2e",
+            "actions": [
+                {
+                    "name": "ScreenPress",
+                    "type": "Button",
+                    "id": "2e4eb5c0-345a-4493-a151-4bd7d0dd3ecc",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PositionScreenPress",
+                    "type": "Value",
+                    "id": "0c9e8bca-c313-43b2-aba2-1369193373a8",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a5a77217-6eb9-4879-a106-b0bb210a3be0",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ScreenPress",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c3006614-5305-495f-b222-bb56dfdecf2a",
+                    "path": "<Touchscreen>/primaryTouch/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PositionScreenPress",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
