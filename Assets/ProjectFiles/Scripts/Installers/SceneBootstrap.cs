@@ -1,12 +1,17 @@
 using ProjectFiles.Scripts.Camera;
 using ProjectFiles.Scripts.Characters;
+using ProjectFiles.Scripts.UI.GameplayUI;
 using UnityEngine;
 
 namespace ProjectFiles.Scripts.Installers
 {
     public sealed class SceneBootstrap : MonoBehaviour // Simple DI & Entry point
     {
-        [Header("Dependencies")]
+        [Header("UI controllers")]
+        [SerializeField] private JoystickViewController _joystickViewController;
+        [Space(10f)]
+
+        [Header("Other controllers")]
         [SerializeField] private PlayerController _playerController;
         [SerializeField] private CameraController _cameraController;
 
@@ -15,8 +20,8 @@ namespace ProjectFiles.Scripts.Installers
 
         private void Awake()
         {
-            // Set components
-            _container = GetDependencyContainer();
+            // Create dependency container
+            CreateDependencyContainer();
 
             // Injection
             DependencyInjection();
@@ -28,19 +33,20 @@ namespace ProjectFiles.Scripts.Installers
             PostSceneInitialization();
         }
 
-        private DependencyContainer GetDependencyContainer()
+        private void CreateDependencyContainer()
         {
-            return new DependencyContainer(_playerController, _cameraController);
+            _container =  new DependencyContainer(
+                _playerController, 
+                _cameraController,
+                _joystickViewController
+            );
         }
 
         private void DependencyInjection()
         {
             foreach (var mono in FindObjectsOfType<MonoBehaviour>())
             {
-                if (mono is IInjectable injectable)
-                {
-                    injectable.Construct(_container);
-                }
+                if (mono is IInjectable injectable) injectable.Construct(_container);
             }
 
             Debug.Log("[SceneBootstrap] Dependencies injection COMPLETED");

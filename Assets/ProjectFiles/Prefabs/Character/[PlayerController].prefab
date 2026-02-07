@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 4003819402967551749}
   - component: {fileID: 6659154538988324511}
   - component: {fileID: 3752780664221529345}
+  - component: {fileID: 1165761057345886663}
   - component: {fileID: 7288688777741957526}
   m_Layer: 3
   m_Name: '[PlayerController]'
@@ -192,6 +193,33 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &1165761057345886663
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2821752807083369141}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 80
+  m_CollisionDetection: 1
 --- !u!114 &7288688777741957526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,8 +232,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 001f358c20e78490dac5e08c819f254b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 0
-  _rotateSpeed: 0
+  _moveSpeed: 6
+  _rotateSpeed: 8
 --- !u!1 &3098307027464429791
 GameObject:
   m_ObjectHideFlags: 0

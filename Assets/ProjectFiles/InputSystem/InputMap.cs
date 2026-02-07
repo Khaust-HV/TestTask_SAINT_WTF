@@ -93,7 +93,7 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
             ""id"": ""d2752fe6-75a4-49ad-b0ce-1ca9b5604d2e"",
             ""actions"": [
                 {
-                    ""name"": ""ScreenPress"",
+                    ""name"": ""TouchPress"",
                     ""type"": ""Button"",
                     ""id"": ""2e4eb5c0-345a-4493-a151-4bd7d0dd3ecc"",
                     ""expectedControlType"": """",
@@ -102,24 +102,24 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""PositionScreenPress"",
-                    ""type"": ""Value"",
+                    ""name"": ""TouchPressPosition"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""0c9e8bca-c313-43b2-aba2-1369193373a8"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
                     ""id"": ""a5a77217-6eb9-4879-a106-b0bb210a3be0"",
-                    ""path"": ""<Touchscreen>/Press"",
+                    ""path"": ""<Touchscreen>/primaryTouch/press"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ScreenPress"",
+                    ""action"": ""TouchPress"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -130,7 +130,7 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""PositionScreenPress"",
+                    ""action"": ""TouchPressPosition"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -141,8 +141,8 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
 }");
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-        m_Player_ScreenPress = m_Player.FindAction("ScreenPress", throwIfNotFound: true);
-        m_Player_PositionScreenPress = m_Player.FindAction("PositionScreenPress", throwIfNotFound: true);
+        m_Player_TouchPress = m_Player.FindAction("TouchPress", throwIfNotFound: true);
+        m_Player_TouchPressPosition = m_Player.FindAction("TouchPressPosition", throwIfNotFound: true);
     }
 
     ~@InputMap()
@@ -223,8 +223,8 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
     // Player
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
-    private readonly InputAction m_Player_ScreenPress;
-    private readonly InputAction m_Player_PositionScreenPress;
+    private readonly InputAction m_Player_TouchPress;
+    private readonly InputAction m_Player_TouchPressPosition;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -237,13 +237,13 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
         /// </summary>
         public PlayerActions(@InputMap wrapper) { m_Wrapper = wrapper; }
         /// <summary>
-        /// Provides access to the underlying input action "Player/ScreenPress".
+        /// Provides access to the underlying input action "Player/TouchPress".
         /// </summary>
-        public InputAction @ScreenPress => m_Wrapper.m_Player_ScreenPress;
+        public InputAction @TouchPress => m_Wrapper.m_Player_TouchPress;
         /// <summary>
-        /// Provides access to the underlying input action "Player/PositionScreenPress".
+        /// Provides access to the underlying input action "Player/TouchPressPosition".
         /// </summary>
-        public InputAction @PositionScreenPress => m_Wrapper.m_Player_PositionScreenPress;
+        public InputAction @TouchPressPosition => m_Wrapper.m_Player_TouchPressPosition;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -270,12 +270,12 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_PlayerActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_PlayerActionsCallbackInterfaces.Add(instance);
-            @ScreenPress.started += instance.OnScreenPress;
-            @ScreenPress.performed += instance.OnScreenPress;
-            @ScreenPress.canceled += instance.OnScreenPress;
-            @PositionScreenPress.started += instance.OnPositionScreenPress;
-            @PositionScreenPress.performed += instance.OnPositionScreenPress;
-            @PositionScreenPress.canceled += instance.OnPositionScreenPress;
+            @TouchPress.started += instance.OnTouchPress;
+            @TouchPress.performed += instance.OnTouchPress;
+            @TouchPress.canceled += instance.OnTouchPress;
+            @TouchPressPosition.started += instance.OnTouchPressPosition;
+            @TouchPressPosition.performed += instance.OnTouchPressPosition;
+            @TouchPressPosition.canceled += instance.OnTouchPressPosition;
         }
 
         /// <summary>
@@ -287,12 +287,12 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
         /// <seealso cref="PlayerActions" />
         private void UnregisterCallbacks(IPlayerActions instance)
         {
-            @ScreenPress.started -= instance.OnScreenPress;
-            @ScreenPress.performed -= instance.OnScreenPress;
-            @ScreenPress.canceled -= instance.OnScreenPress;
-            @PositionScreenPress.started -= instance.OnPositionScreenPress;
-            @PositionScreenPress.performed -= instance.OnPositionScreenPress;
-            @PositionScreenPress.canceled -= instance.OnPositionScreenPress;
+            @TouchPress.started -= instance.OnTouchPress;
+            @TouchPress.performed -= instance.OnTouchPress;
+            @TouchPress.canceled -= instance.OnTouchPress;
+            @TouchPressPosition.started -= instance.OnTouchPressPosition;
+            @TouchPressPosition.performed -= instance.OnTouchPressPosition;
+            @TouchPressPosition.canceled -= instance.OnTouchPressPosition;
         }
 
         /// <summary>
@@ -334,18 +334,18 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         /// <summary>
-        /// Method invoked when associated input action "ScreenPress" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "TouchPress" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnScreenPress(InputAction.CallbackContext context);
+        void OnTouchPress(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "PositionScreenPress" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "TouchPressPosition" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnPositionScreenPress(InputAction.CallbackContext context);
+        void OnTouchPressPosition(InputAction.CallbackContext context);
     }
 }

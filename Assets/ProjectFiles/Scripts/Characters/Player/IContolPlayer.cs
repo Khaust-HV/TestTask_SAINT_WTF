@@ -7,5 +7,6 @@ namespace ProjectFiles.Scripts.Characters
         // Properties
         public bool IsMoveCharacterActive { set; }
         public Vector3 MoveDirection { set; }
+        public float MoveSpeedScale { set; }
     }
 }

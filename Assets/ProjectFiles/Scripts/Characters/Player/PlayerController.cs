@@ -28,6 +28,7 @@ namespace ProjectFiles.Scripts.Characters
             }
         }
         public Vector3 MoveDirection { get; set; }
+        public float MoveSpeedScale { get; set; }
 
         // Components
         private DependencyContainer _container;
@@ -59,7 +60,7 @@ namespace ProjectFiles.Scripts.Characters
 
             _oldMoveDirection.Normalize();
 
-            var targetPosition = _rigidbody.position + _oldMoveDirection * _moveSpeed * Time.fixedDeltaTime;
+            var targetPosition = _rigidbody.position + _oldMoveDirection * (_moveSpeed * MoveSpeedScale) * Time.fixedDeltaTime;
 
             _rigidbody.MovePosition(targetPosition);
 
