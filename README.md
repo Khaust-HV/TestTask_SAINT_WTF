@@ -12,10 +12,11 @@ Start --> 06.02.26 8PM [UTC+2]
 - Resources (N1,N2,N3) [x]
 - Buildings (∞ -> N1, N1 -> N2, N1 + N2 -> N3) [x]
 - Map [x]
-- Notification UI [ ]
+- Notification UI [x]
 
-Finish --> ? [UTC+2]
+Finish --> 07.02.26 11:30PM [UTC+2]
 
 Simplifications:
 - No scriptable objects
 - No object pooling
+- For NotificationViewController used AI

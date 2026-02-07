@@ -1,6 +1,7 @@
 using ProjectFiles.Scripts.Buildings.Resources;
 using ProjectFiles.Scripts.Camera;
 using ProjectFiles.Scripts.Characters.Player;
+using ProjectFiles.Scripts.Notification;
 using ProjectFiles.Scripts.UI.GameplayUI;
 using UnityEngine;
 
@@ -16,11 +17,13 @@ namespace ProjectFiles.Scripts.Installers
         [SerializeField] private PlayerController _playerController;
         [SerializeField] private PlayerInventoryController _playerInventoryController;
         [SerializeField] private CameraController _cameraController;
+        [SerializeField] private NotificationController _notificationController;
 
         [Header("Prefabs")] // Temporary replacement of configuration files
         [SerializeField] private ResourceController _n1Prefab;
         [SerializeField] private ResourceController _n2Prefab;
         [SerializeField] private ResourceController _n3Prefab;
+        [SerializeField] private NotificationViewController _notificationViewPrefab;
 
         // Components
         private DependencyContainer _container;   
@@ -46,10 +49,12 @@ namespace ProjectFiles.Scripts.Installers
                 _n1Prefab,
                 _n2Prefab,
                 _n3Prefab,
+                _notificationViewPrefab,
                 _playerController, 
                 _playerInventoryController,
                 _cameraController,
-                _joystickViewController
+                _joystickViewController,
+                _notificationController
             );
         }
 

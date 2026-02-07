@@ -46,7 +46,12 @@ namespace ProjectFiles.Scripts.Buildings
         #region Production
         private bool CheckToStartProduction()
         {
-            if (!_producedWarehouseController.CheckCanSetResource()) return false;
+            if (!_producedWarehouseController.CheckCanSetResource())
+            {
+                _container.ControlNotification.Show(transform, "Produced warehouse is full");
+                
+                return false;
+            }
 
             bool canStart = false;
 
@@ -69,6 +74,9 @@ namespace ProjectFiles.Scripts.Buildings
                     break
                 ;
             }
+
+            if (!canStart) _container.ControlNotification.Show(transform, "Consumed warehouse is empty");
+            else _container.ControlNotification.Hide(transform);
 
             return canStart;
         }
