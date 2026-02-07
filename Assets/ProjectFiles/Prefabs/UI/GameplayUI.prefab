@@ -433,6 +433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b7de21d634b34ae299932c5e090c084, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _canvasRect: {fileID: 6659521259490169226}
   _joystickBackgroundRect: {fileID: 5025453298967965449}
   _stickRect: {fileID: 2859332245901515712}
 --- !u!225 &8159052639877155956

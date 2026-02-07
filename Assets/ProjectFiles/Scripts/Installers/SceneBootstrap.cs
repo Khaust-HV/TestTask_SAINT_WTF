@@ -1,5 +1,6 @@
+using ProjectFiles.Scripts.Buildings.Resources;
 using ProjectFiles.Scripts.Camera;
-using ProjectFiles.Scripts.Characters;
+using ProjectFiles.Scripts.Characters.Player;
 using ProjectFiles.Scripts.UI.GameplayUI;
 using UnityEngine;
 
@@ -13,7 +14,13 @@ namespace ProjectFiles.Scripts.Installers
 
         [Header("Other controllers")]
         [SerializeField] private PlayerController _playerController;
+        [SerializeField] private PlayerInventoryController _playerInventoryController;
         [SerializeField] private CameraController _cameraController;
+
+        [Header("Prefabs")] // Temporary replacement of configuration files
+        [SerializeField] private ResourceController _n1Prefab;
+        [SerializeField] private ResourceController _n2Prefab;
+        [SerializeField] private ResourceController _n3Prefab;
 
         // Components
         private DependencyContainer _container;   
@@ -36,7 +43,11 @@ namespace ProjectFiles.Scripts.Installers
         private void CreateDependencyContainer()
         {
             _container =  new DependencyContainer(
+                _n1Prefab,
+                _n2Prefab,
+                _n3Prefab,
                 _playerController, 
+                _playerInventoryController,
                 _cameraController,
                 _joystickViewController
             );

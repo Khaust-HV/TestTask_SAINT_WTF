@@ -1,9 +1,9 @@
 using ProjectFiles.Scripts.Installers;
 using UnityEngine;
 
-namespace ProjectFiles.Scripts.Characters
+namespace ProjectFiles.Scripts.Characters.Player
 {
-    public sealed class PlayerController : MonoBehaviour, IInjectable, IContolPlayer
+    public sealed class PlayerController : MonoBehaviour, IInjectable, IControlPlayer
     {
         [Header("Movement")]
         [SerializeField] private float _moveSpeed;

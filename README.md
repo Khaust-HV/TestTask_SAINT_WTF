@@ -8,13 +8,14 @@ Start --> 06.02.26 8PM [UTC+2]
 - Camera [x]
 - Player movement [x]
 - Virtual joystick UI [x]
-- Inventory [ ]
-- Resources (N1,N2,N3) [ ]
-- Fabriks (∞ -> N1, N1 -> N2, N1 + N2 -> N3) [ ]
-- Map [ ]
+- Inventory [x]
+- Resources (N1,N2,N3) [x]
+- Buildings (∞ -> N1, N1 -> N2, N1 + N2 -> N3) [x]
+- Map [x]
 - Notification UI [ ]
 
 Finish --> ? [UTC+2]
 
 Simplifications:
 - No scriptable objects
+- No object pooling

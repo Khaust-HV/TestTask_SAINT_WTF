@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace ProjectFiles.Scripts.Characters
+namespace ProjectFiles.Scripts.Characters.Player
 {
-    public interface IContolPlayer
+    public interface IControlPlayer
     {
         // Properties
         public bool IsMoveCharacterActive { set; }
